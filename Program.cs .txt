@@ -1,0 +1,149 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string choice;
+
+        do
+        {
+            Console.WriteLine("Enter letter to open file");
+            Console.WriteLine("a. Legal Age Identifier");
+            Console.WriteLine("b. Random Number Generator");
+            Console.WriteLine("c. Simple Calculator");
+            Console.WriteLine("d. Grading System");
+            Console.WriteLine("e. Exit");
+            Console.Write("File: ");
+
+            choice = Console.ReadLine().ToLower();
+
+            switch (choice)
+            {
+                case "a":
+                    LegalAgeIdentifier();
+                    break;
+                case "b":
+                    RandomNumberGenerator();
+                    break;
+                case "c":
+                    SimpleCalculator();
+                    break;
+                case "d":
+                    GradingSystem();
+                    break;
+                case "e":
+                    Console.WriteLine("Exiting the program. Goodbye!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please select a to e.");
+                    break;
+            }
+
+            if (choice != "e")
+            {
+                Console.WriteLine("Press Enter to return to the menu...");
+                Console.ReadLine();
+            }
+
+        } while (choice != "e");
+    }
+
+    static void LegalAgeIdentifier()
+    {
+        Console.Write("Enter your age: ");
+        int a = Convert.ToInt32(Console.ReadLine());
+
+        if (a >= 18)
+            Console.WriteLine("You are of legal age.");
+        else
+            Console.WriteLine("You are underage.");
+    }
+
+    static void RandomNumberGenerator()
+    {
+        Random rand = new Random();
+        int a = rand.Next(1, 500);
+        Console.WriteLine("Random number: " + a);
+    }
+
+    static void SimpleCalculator()
+    {
+        Console.Write("Enter first number (a): ");
+        double a = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter operator (+, -, *, /): ");
+        char op = Convert.ToChar(Console.ReadLine());
+
+        Console.Write("Enter second number (b): ");
+        double b = Convert.ToDouble(Console.ReadLine());
+
+        double result = 0;
+
+        switch (op)
+        {
+            case '+':
+                result = a + b;
+                break;
+            case '-':
+                result = a - b;
+                break;
+            case '*':
+                result = a * b;
+                break;
+            case '/':
+                if (b != 0)
+                    result = a / b;
+                else
+                {
+                    Console.WriteLine("Error: Division by zero!");
+                    return;
+                }
+                break;
+            default:
+                Console.WriteLine("Invalid operator!");
+                return;
+        }
+
+        Console.WriteLine("Result: " + result);
+    }
+
+    static void GradingSystem()
+    {
+        Console.WriteLine("Enter your grade for each subject:");
+
+        Console.Write("C#: ");
+        int a = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Html: ");
+        int b = Convert.ToInt32(Console.ReadLine());
+        Console.Write("PR1: ");
+        int c = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Entrepreneur: ");
+        int d = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Mil: ");
+        int e = Convert.ToInt32(Console.ReadLine());
+        Console.Write("P.E1: ");
+        int f = Convert.ToInt32(Console.ReadLine());
+        Console.Write("21st: ");
+        int g = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Philosophy: ");
+        int h = Convert.ToInt32(Console.ReadLine());
+
+        double ave = (a + b + c + d + e + f + g + h) / 8.0;
+
+        Console.WriteLine("Your average is " + ave);
+
+        if (ave >= 90)
+        {
+            Console.WriteLine("Honor student");
+        }
+        else if (ave >= 75)
+        {
+            Console.WriteLine("Passed");
+        }
+        else
+        {
+            Console.WriteLine("Fail");
+        }
+    }
+}
